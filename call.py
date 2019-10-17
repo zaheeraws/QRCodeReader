@@ -3,7 +3,9 @@
 Created on  Jun 16 22:39:34 2016
 
 @author: AnkitSingh
+@author zaheeraws
 """
+
 
 from Imagehandler import Imagehandler
 import yaml
@@ -23,15 +25,15 @@ def App():
     for filetype in filesTypes:
         images.extend(glob.glob(directorypath + '/*.' + filetype))
     paths = [os.path.join(directorypath, image) for image in images]
-    for i in xrange(len(paths)):
+    for i in range(len(paths)):
         obj = Imagehandler(paths[i])
         try:
             TransformImage = obj.QRCodeInImage()
         except ZeroDivisionError:
-            print 'QR Code not found in image '+paths[i]
+            print('QR Code not found in image '+paths[i])
             continue
         if TransformImage is None:
-            print 'Image is not generated'
+            print('Image is not generated')
         obj.WritingImage(TransformImage, str(output), '/output' + str(i) + '.jpg')
 
 
